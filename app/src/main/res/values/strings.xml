@@ -1,6 +1,26 @@
 <resources>
     <string name="app_name">Handle</string>
-
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="refresh">Refresh</string>
+    <string name="edit_message">Enter a Message</string>
+    <string name="button_send">Send</string>
+    <string name="title_activity_setting">NetWork</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="name">Name</string>
+    <string name="ip">IP</string>
+    <string name="Status">Status</string>
+
+    <string name="Xs">X-</string>
+    <string name="Ys">Y-</string>
+    <string name="Zs">Z-</string>
+    <string name="Rs">R-</string>
+    <string name="R1s">R1-</string>
+    <string name="R2s">R2-</string>
+    <string name="Xp">X+</string>
+    <string name="Yp">Y+</string>
+    <string name="Zp">Z+</string>
+    <string name="Rp">R+</string>
+    <string name="R1p">R1+</string>
+    <string name="R2p">R2+</string>
+
 </resources>
