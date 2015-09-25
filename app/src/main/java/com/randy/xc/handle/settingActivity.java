@@ -2,24 +2,37 @@ package com.randy.xc.handle;
 
 import android.app.ActionBar;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
 
-import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
 import java.net.SocketException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class settingActivity extends AppCompatActivity {
+
+    private Thread send;
+    private Thread get;
+    private Handler handler;
+    private DatagramSocket datagramSocket;
+    private DatagramPacket datagramPacket;
+    private List<Connection> connectionList=new ArrayList<Connection>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,11 +41,89 @@ public class settingActivity extends AppCompatActivity {
         String message=intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
         setContentView(R.layout.activity_setting);
 
+        get= new Thread(getRun);
+        get.start();
         //broadcast
-        new Thread(sendRun).start();
+        send=new Thread(sendRun);
+        send.start();
 
-        new Thread(getRun).start();
+        handler=new Handler() {
+            @Override
+            public void handleMessage(Message message1)
+            {
+                super.handleMessage(message1);
+                TableLayout tableLayout=(TableLayout)findViewById(R.id.display_message);
+                for(int i=1;i<tableLayout.getChildCount();i++)
+                {
+                    tableLayout.removeView(tableLayout.getChildAt(i));
+                }
+
+                for(int i=0;i<connectionList.size();i++) {
+                    TableRow tableRow = new TableRow(settingActivity.this);
+
+                    TextView editText = new TextView(settingActivity.this.getApplicationContext());
+                    editText.setText(connectionList.get(i).getName_msg());
+                    editText.setTextColor(Color.rgb(0, 0, 0));
+                    editText.setLayoutParams(new TableRow.LayoutParams(
+                            0,
+                            ActionBar.LayoutParams.WRAP_CONTENT, 3.5f));
+
+                    TextView editTextIP = new TextView(settingActivity.this);
+                    editTextIP.setText(connectionList.get(i).getDatagramPacket().getSocketAddress().toString());
+                    editTextIP.setLayoutParams(new TableRow.LayoutParams(
+                            0,
+                            ActionBar.LayoutParams.WRAP_CONTENT, 5.5f));
+
+                    RadioButton radioButton = new RadioButton(settingActivity.this);
+                    radioButton.setLayoutParams(new TableRow.LayoutParams(
+                            0,
+                            ActionBar.LayoutParams.WRAP_CONTENT, 1.5f));
+                    radioButton.setSelected(false);
+                    radioButton.setId(i);
+                    radioButton.setOnClickListener(new RadioButton.OnClickListener() {
+                                                       @Override
+                                                       public void onClick(View v) {
+                                                           for(int j=0;j<connectionList.size();j++)
+                                                           {
+                                                               connectionList.get(j).setIsSelected(false);
+                                                           }
+                                                           v.setSelected(true);
+                                                           connectionList.get(v.getId()).setIsSelected(true);
+                                                       }
+                                                   }
+
+                    );
+
+                    tableRow.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+                    tableRow.addView(editText);
+                    tableRow.addView(editTextIP);
+                    tableRow.addView(radioButton);
+                    tableLayout.addView(tableRow);
+                }
+            }
+        };
     }
+    @Override
+    protected void onStop()
+    {
+        for(int i=0;i<connectionList.size();i++)
+        {
+            if(connectionList.get(i).getIsSelected())
+            {
+                MainActivity.connection=connectionList.get(i);
+                break;
+            }
+        }
+
+        if(datagramSocket!=null&&!datagramSocket.isClosed())
+            datagramSocket.close();
+        super.onStop();
+        if(send!=null&&send.isAlive())
+            send.interrupt();
+        if(get!=null&&get.isAlive())
+            get.interrupt();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -56,7 +147,11 @@ public class settingActivity extends AppCompatActivity {
 
     public void refresh(MenuItem menu)
     {
-        new Thread(sendRun).start();
+        if(send!=null&&send.isAlive()) {
+            send.interrupt();
+        }
+        send=new Thread(sendRun);
+        send.start();
     }
 
     Runnable sendRun = new Runnable(){
@@ -122,47 +217,49 @@ public class settingActivity extends AppCompatActivity {
         byte[] message = new byte[100];
         try {
             // 建立Socket连接
-            DatagramSocket datagramSocket = new DatagramSocket(destPortInt);
+            datagramSocket = new DatagramSocket(destPortInt);
             datagramSocket.setBroadcast(true);
-            DatagramPacket datagramPacket = new DatagramPacket(message,
+            datagramPacket = new DatagramPacket(message,
                     message.length);
             try {
                 while (true) {
+
                     // 准备接收数据
                     datagramSocket.receive(datagramPacket);
                     String strMsg=new String(datagramPacket.getData()).trim();
-                    if(strMsg!=null&&strMsg.equals("udpptp"))
+                    if(strMsg!=null&&strMsg.matches("Machine[0-9][0-9]"))
                     {
-                        TableLayout tableLayout=(TableLayout)findViewById(R.id.display_message);
-                        TableRow tableRow=new TableRow(this);
-
-                        EditText editText=new EditText(this.getApplicationContext());
-                        editText.setText(datagramSocket.getInetAddress().getHostAddress());
-                        TableRow.LayoutParams params = new TableRow.LayoutParams(
-                                ActionBar.LayoutParams.WRAP_CONTENT,
-                                ActionBar.LayoutParams.WRAP_CONTENT, 1.0f);
-                        editText.setLayoutParams(params);
-
-                        EditText editTextIP=new EditText(this);
-                        editTextIP.setText(datagramSocket.getInetAddress().getAddress().toString());
-                        editTextIP.setLayoutParams(params);
-
-                        RadioButton radioButton=new RadioButton(this);
-                        radioButton.setLayoutParams(params);
-
-                        tableRow.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-                        tableRow.addView(editText);
-                        tableRow.addView(editTextIP);
-                        tableRow.addView(radioButton);
-                        tableLayout.addView(tableRow);
-
+                        if(isExistMachine(strMsg))
+                            continue;
+                        Connection connection=new Connection(strMsg,datagramPacket,false);
+                        connectionList.add(connection);
+                        handler.sendMessage(handler.obtainMessage());
                     }
                 }
-            } catch (IOException e) {//IOException
+            } catch (Exception e) {//IOException
                 e.printStackTrace();
             }
+            datagramSocket.close();
         } catch (SocketException e) {
+            if(datagramSocket!=null&&!datagramSocket.isClosed())
+                datagramSocket.close();
             e.printStackTrace();
         }
+    }
+
+    /*
+    ture:exist
+    false:not exist
+     */
+    private boolean isExistMachine(String name)
+    {
+        if(connectionList.size()<1)
+            return false;
+        for(int i=0;i<connectionList.size();i++)
+        {
+            if(connectionList.get(i).getName_msg().equals(name))
+                return  true;
+        }
+        return false;
     }
 }

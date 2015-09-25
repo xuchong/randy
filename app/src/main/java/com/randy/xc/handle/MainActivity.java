@@ -11,12 +11,17 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     public final static String EXTRA_MESSAGE="com.randy.xc.handle.MESSAGE";
-    public static Connection connection;
+    public static Connection connection=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if(connection!=null)
+        {
+
+        }
     }
 
     @Override
