@@ -104,8 +104,9 @@ public class settingActivity extends AppCompatActivity {
         };
     }
     @Override
-    protected void onStop()
+    protected  void onPause()
     {
+        super.onPause();
         for(int i=0;i<connectionList.size();i++)
         {
             if(connectionList.get(i).getIsSelected())
@@ -114,7 +115,10 @@ public class settingActivity extends AppCompatActivity {
                 break;
             }
         }
-
+    }
+    @Override
+    protected void onStop()
+    {
         if(datagramSocket!=null&&!datagramSocket.isClosed())
             datagramSocket.close();
         super.onStop();
