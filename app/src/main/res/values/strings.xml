@@ -22,5 +22,13 @@
     <string name="Rp">R+</string>
     <string name="R1p">R1+</string>
     <string name="R2p">R2+</string>
+    <string name="speeds">减速</string>
+    <string name="speedp">加速</string>
+    <string name="pointmv">点动</string>
+    <string name="linemv">连动</string>
+    <string name="m001">0.01</string>
+    <string name="m01">0.1</string>
+    <string name="m1">1</string>
+    <string name="m10">10</string>
 
 </resources>

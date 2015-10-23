@@ -4,13 +4,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="?android:attr/actionBarSize">
+
+    <LinearLayout >
+        <TextView
+            android:id="@+id/label_x"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:paddingLeft="25pt"
+            android:text="X"
+            >
+        </TextView>
+        <TextView
+            android:id="@+id/data_x"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:paddingLeft="10pt"
+            >
+        </TextView>
+    </LinearLayout>
     <TableRow android:gravity="center_horizontal">
         <Button
             android:text="@string/Xs"
             android:id="@+id/Button01"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="button_Xs"
             >
         </Button>
         <Button
@@ -18,7 +35,7 @@
             android:id="@+id/Button02"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="button_Xp">
+            >
         </Button>
     </TableRow>
     <TableRow android:gravity="center_horizontal">
@@ -27,14 +44,14 @@
             android:id="@+id/Button03"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="button_Ys">
+            >
         </Button>
         <Button
             android:text="@string/Yp"
             android:id="@+id/Button04"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="button_Yp">
+            >
         </Button>
     </TableRow>
     <TableRow android:gravity="center_horizontal">
@@ -43,14 +60,14 @@
             android:id="@+id/Button05"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="button_Zs">
+            >
         </Button>
         <Button
             android:text="@string/Zp"
             android:id="@+id/Button06"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="button_Zp">
+            >
         </Button>
     </TableRow>
     <TableRow android:gravity="center_horizontal">
@@ -59,14 +76,14 @@
             android:id="@+id/Button07"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="button_Rs">
+            >
         </Button>
         <Button
             android:text="@string/Rp"
             android:id="@+id/Button08"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="button_Rp">
+            >
         </Button>
     </TableRow>
     <TableRow android:gravity="center_horizontal">
@@ -75,14 +92,14 @@
             android:id="@+id/Button09"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="button_R1s">
+            >
         </Button>
         <Button
             android:text="@string/R1p"
             android:id="@+id/Button10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="button_R1p">
+            >
         </Button>
     </TableRow>
     <TableRow android:gravity="center_horizontal">
@@ -91,22 +108,116 @@
             android:id="@+id/Button11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="button_R2s">
+            >
         </Button>
         <Button
             android:text="@string/R2p"
             android:id="@+id/Button12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="button_R2p">
+            >
         </Button>
     </TableRow>
-        <TextView
-            android:id="@+id/textStatus"
+    <TableRow android:gravity="center_horizontal">
+        <Button
+            android:text="@string/speeds"
+            android:id="@+id/Button13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textColor="@color/green"
+            android:onClick="button_Speeds">
+        </Button>
+        <Button
+            android:text="@string/speedp"
+            android:id="@+id/Button14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="button_Speedp">
+        </Button>
+    </TableRow>
+    <TextView
+        android:id="@+id/textStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/green"
+        >
+    </TextView>
+    <LinearLayout android:gravity="center_horizontal">
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
             >
-        </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pointmv"
+                />
+            <RadioButton
+                android:id="@+id/pointmv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="radio_point"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/linemv"
+                />
+            <RadioButton
+                android:id="@+id/linemv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="radio_line"/>
+        </RadioGroup>
+    </LinearLayout>
+    <LinearLayout android:gravity="center_horizontal">
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/m001"
+                />
+            <RadioButton
+                android:id="@+id/m001"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="radio_m001"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/m01"
+                />
+            <RadioButton
+                android:id="@+id/m01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="radio_m01"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/m1"
+                />
+            <RadioButton
+                android:id="@+id/m1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="radio_m1"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/m10"
+                />
+            <RadioButton
+                android:id="@+id/m10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="radio_m10"/>
+        </RadioGroup>
+    </LinearLayout>
 </TableLayout>

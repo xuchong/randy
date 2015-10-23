@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Xml;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -219,6 +220,7 @@ public class settingActivity extends AppCompatActivity {
     {
         // 接收的字节大小，客户端发送的数据不能超过这个大小
         byte[] message = new byte[100];
+        String substr=null;
         try {
             // 建立Socket连接
             datagramSocket = new DatagramSocket(destPortInt);
@@ -230,9 +232,16 @@ public class settingActivity extends AppCompatActivity {
 
                     // 准备接收数据
                     datagramSocket.receive(datagramPacket);
-                    String strMsg=new String(datagramPacket.getData()).trim();
-                    if(strMsg!=null&&strMsg.matches("Machine[0-9][0-9]"))
+                    String strMsg=new String(datagramPacket.getData(),0,datagramPacket.getData().length,"UTF-8").trim();
+                    if(strMsg==null)
+                        continue;
+                    if(strMsg.length()<10)
+                        substr=strMsg.substring(0);
+                    else
+                        substr=strMsg.substring(0,9);
+                    if(substr.matches("Machine[0-9][0-9]"))
                     {
+                        strMsg=strMsg.substring(9);
                         if(isExistMachine(strMsg))
                             continue;
                         Connection connection=new Connection(strMsg,datagramPacket,false);
