@@ -158,6 +158,9 @@ public class MainActivity extends AppCompatActivity {
         radioButton[5]=(RadioButton)findViewById(R.id.m10);
 
         textView_coordinator[0]=(TextView)findViewById(R.id.data_x);
+        textView_coordinator[1]=(TextView)findViewById(R.id.data_y);
+        textView_coordinator[2]=(TextView)findViewById(R.id.data_z);
+        textView_coordinator[3]=(TextView)findViewById(R.id.data_r);
 
         handler_get=new Handler()
         {
@@ -179,7 +182,8 @@ public class MainActivity extends AppCompatActivity {
                 else if(steplength==4)
                     radioButton[5].setChecked(true);
 
-                textView_coordinator[0].setText(coordinators[0]);
+                for(int i=0;i<4;i++)
+                    textView_coordinator[i].setText(coordinators[i]);
             }
         };
 
@@ -425,6 +429,21 @@ public class MainActivity extends AppCompatActivity {
                                     event = parser.next();
                                     if (parser.getEventType() == XmlPullParser.TEXT) {
                                         coordinators[0] = parser.getText();
+                                    }
+                                }else if ("y".equals(parser.getName())) {
+                                    event = parser.next();
+                                    if (parser.getEventType() == XmlPullParser.TEXT) {
+                                        coordinators[1] = parser.getText();
+                                    }
+                                }else if ("z".equals(parser.getName())) {
+                                    event = parser.next();
+                                    if (parser.getEventType() == XmlPullParser.TEXT) {
+                                        coordinators[2] = parser.getText();
+                                    }
+                                }else if ("r".equals(parser.getName())) {
+                                    event = parser.next();
+                                    if (parser.getEventType() == XmlPullParser.TEXT) {
+                                        coordinators[3] = parser.getText();
                                     }
                                 }
                                 break;
