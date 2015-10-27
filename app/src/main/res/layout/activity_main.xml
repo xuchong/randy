@@ -21,6 +21,52 @@
             android:paddingLeft="10pt"
             >
         </TextView>
+        <TextView
+            android:id="@+id/label_y"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:paddingLeft="25pt"
+            android:text="Y"
+            >
+        </TextView>
+        <TextView
+            android:id="@+id/data_y"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:paddingLeft="10pt"
+            >
+        </TextView>
+        <TextView
+            android:id="@+id/label_z"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:paddingLeft="25pt"
+            android:text="X"
+            >
+        </TextView>
+        <TextView
+            android:id="@+id/data_z"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:paddingLeft="10pt"
+            >
+        </TextView>
+        <TextView
+            android:id="@+id/label_r"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:paddingLeft="25pt"
+            android:text="X"
+            >
+        </TextView>
+        <TextView
+            android:id="@+id/data_r"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:paddingLeft="10pt"
+            >
+        </TextView>
+
     </LinearLayout>
     <TableRow android:gravity="center_horizontal">
         <Button
