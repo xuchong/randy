@@ -22,6 +22,7 @@ import java.net.UnknownHostException;
 import android.os.Handler;
 
 import org.xmlpull.v1.XmlPullParser;
+import info.hoang8f.widget.FButton;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -54,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
         View.OnTouchListener listener=new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+                if(v!=null&&v instanceof FButton)
+                    ((FButton)v).onTouch(v,event);
                 int index=0;
                 byte value=2;
                 if(v.getId() == R.id.Button01){
@@ -115,19 +118,19 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         };
-        Button buttonxs,buttonxp,buttonys,buttonyp,buttonzs,buttonzp,buttonrs,buttonrp,buttonr1s,buttonr1p,buttonr2s,buttonr2p;
-        buttonxs=(Button)findViewById(R.id.Button01);
-        buttonxp=(Button)findViewById(R.id.Button02);
-        buttonys=(Button)findViewById(R.id.Button03);
-        buttonyp=(Button)findViewById(R.id.Button04);
-        buttonzs=(Button)findViewById(R.id.Button05);
-        buttonzp=(Button)findViewById(R.id.Button06);
-        buttonrs=(Button)findViewById(R.id.Button07);
-        buttonrp=(Button)findViewById(R.id.Button08);
-        buttonr1s=(Button)findViewById(R.id.Button09);
-        buttonr1p=(Button)findViewById(R.id.Button10);
-        buttonr2s=(Button)findViewById(R.id.Button11);
-        buttonr2p=(Button)findViewById(R.id.Button12);
+        FButton buttonxs,buttonxp,buttonys,buttonyp,buttonzs,buttonzp,buttonrs,buttonrp,buttonr1s,buttonr1p,buttonr2s,buttonr2p;
+        buttonxs=(FButton)findViewById(R.id.Button01);
+        buttonxp=(FButton)findViewById(R.id.Button02);
+        buttonys=(FButton)findViewById(R.id.Button03);
+        buttonyp=(FButton)findViewById(R.id.Button04);
+        buttonzs=(FButton)findViewById(R.id.Button05);
+        buttonzp=(FButton)findViewById(R.id.Button06);
+        buttonrs=(FButton)findViewById(R.id.Button07);
+        buttonrp=(FButton)findViewById(R.id.Button08);
+        buttonr1s=(FButton)findViewById(R.id.Button09);
+        buttonr1p=(FButton)findViewById(R.id.Button10);
+        buttonr2s=(FButton)findViewById(R.id.Button11);
+        buttonr2p=(FButton)findViewById(R.id.Button12);
         buttonxs.setOnTouchListener(listener);
         buttonxp.setOnTouchListener(listener);
         buttonys.setOnTouchListener(listener);
