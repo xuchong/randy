@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingTop="?android:attr/actionBarSize">
+    android:layout_height="match_parent">
+<TableLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <LinearLayout >
         <TextView
@@ -69,116 +72,195 @@
 
     </LinearLayout>
     <TableRow android:gravity="center_horizontal">
-        <Button
-            android:text="@string/Xs"
+        <info.hoang8f.widget.FButton
             android:id="@+id/Button01"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            >
-        </Button>
-        <Button
-            android:text="@string/Xp"
+            android:layout_gravity="left|top"
+            android:layout_margin="5dp"
+            android:minHeight="@dimen/demo_button_min_height"
+            android:minWidth="@dimen/demo_button_min_width"
+            android:text="@string/Xs"
+            android:textColor="@android:color/white"
+            fbutton:buttonColor="@color/fbutton_color_turquoise"
+            fbutton:shadowEnabled="true" />
+
+        <info.hoang8f.widget.FButton
             android:id="@+id/Button02"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            >
-        </Button>
+            android:layout_gravity="right|top"
+            android:layout_margin="5dp"
+            android:minHeight="@dimen/demo_button_min_height"
+            android:minWidth="@dimen/demo_button_min_width"
+            android:text="@string/Xp"
+            android:textColor="@android:color/white"
+            fbutton:buttonColor="@color/fbutton_color_sun_flower"
+            fbutton:shadowEnabled="true" />
     </TableRow>
     <TableRow android:gravity="center_horizontal">
-        <Button
-            android:text="@string/Ys"
+        <info.hoang8f.widget.FButton
             android:id="@+id/Button03"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            >
-        </Button>
-        <Button
-            android:text="@string/Yp"
+            android:layout_gravity="left|center_vertical"
+            android:layout_margin="5dp"
+            android:minHeight="@dimen/demo_button_min_height"
+            android:minWidth="@dimen/demo_button_min_width"
+            android:text="@string/Ys"
+            android:textColor="@android:color/white"
+            fbutton:buttonColor="@color/fbutton_color_emerald"
+            fbutton:shadowEnabled="true" />
+
+        <info.hoang8f.widget.FButton
             android:id="@+id/Button04"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            >
-        </Button>
+            android:layout_gravity="right|center_vertical"
+            android:layout_margin="5dp"
+            android:minHeight="@dimen/demo_button_min_height"
+            android:minWidth="@dimen/demo_button_min_width"
+            android:text="@string/Yp"
+            android:textColor="@android:color/white"
+            fbutton:buttonColor="@color/fbutton_color_wet_asphalt"
+            fbutton:shadowEnabled="true" />
     </TableRow>
     <TableRow android:gravity="center_horizontal">
-        <Button
-            android:text="@string/Zs"
-            android:id="@+id/Button05"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            >
-        </Button>
-        <Button
-            android:text="@string/Zp"
-            android:id="@+id/Button06"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            >
-        </Button>
+            <info.hoang8f.widget.FButton
+                android:id="@+id/Button05"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center_vertical"
+                android:layout_margin="5dp"
+                android:minHeight="@dimen/demo_button_min_height"
+                android:minWidth="@dimen/demo_button_min_width"
+                android:text="@string/Zs"
+                android:textColor="@android:color/white"
+                fbutton:buttonColor="@color/fbutton_color_alizarin"
+                fbutton:shadowEnabled="true" />
+
+            <info.hoang8f.widget.FButton
+                android:id="@+id/Button06"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center_vertical"
+                android:layout_margin="5dp"
+                android:minHeight="@dimen/demo_button_min_height"
+                android:minWidth="@dimen/demo_button_min_width"
+                android:text="@string/Zp"
+                android:textColor="@android:color/white"
+                fbutton:buttonColor="@color/fbutton_color_emerald"
+                fbutton:shadowEnabled="true"/>
     </TableRow>
     <TableRow android:gravity="center_horizontal">
-        <Button
-            android:text="@string/Rs"
-            android:id="@+id/Button07"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            >
-        </Button>
-        <Button
-            android:text="@string/Rp"
-            android:id="@+id/Button08"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            >
-        </Button>
+            <info.hoang8f.widget.FButton
+                android:id="@+id/Button07"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center_vertical"
+                android:layout_margin="5dp"
+                android:minHeight="@dimen/demo_button_min_height"
+                android:minWidth="@dimen/demo_button_min_width"
+                android:text="@string/Rs"
+                android:textColor="@android:color/white"
+                fbutton:buttonColor="@color/fbutton_color_green_sea"
+                fbutton:shadowEnabled="true" />
+
+            <info.hoang8f.widget.FButton
+                android:id="@+id/Button08"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center_vertical"
+                android:layout_margin="5dp"
+                android:minHeight="@dimen/demo_button_min_height"
+                android:minWidth="@dimen/demo_button_min_width"
+                android:text="@string/Rp"
+                android:textColor="@android:color/white"
+                fbutton:buttonColor="@color/fbutton_color_nephritis"
+                fbutton:shadowEnabled="true"/>
     </TableRow>
     <TableRow android:gravity="center_horizontal">
-        <Button
-            android:text="@string/R1s"
+        <info.hoang8f.widget.FButton
             android:id="@+id/Button09"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            >
-        </Button>
-        <Button
-            android:text="@string/R1p"
+            android:layout_gravity="left|center_vertical"
+            android:layout_margin="5dp"
+            android:minHeight="@dimen/demo_button_min_height"
+            android:minWidth="@dimen/demo_button_min_width"
+            android:text="@string/R1s"
+            android:textColor="@android:color/white"
+            fbutton:buttonColor="@color/fbutton_color_peter_river"
+            fbutton:shadowEnabled="true" />
+
+        <info.hoang8f.widget.FButton
             android:id="@+id/Button10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            >
-        </Button>
+            android:layout_gravity="right|center_vertical"
+            android:layout_margin="5dp"
+            android:minHeight="@dimen/demo_button_min_height"
+            android:minWidth="@dimen/demo_button_min_width"
+            android:text="@string/R1p"
+            android:textColor="@android:color/white"
+            fbutton:buttonColor="@color/fbutton_color_belize_hole"
+            fbutton:shadowEnabled="true"/>
     </TableRow>
     <TableRow android:gravity="center_horizontal">
-        <Button
-            android:text="@string/R2s"
+        <info.hoang8f.widget.FButton
             android:id="@+id/Button11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            >
-        </Button>
-        <Button
-            android:text="@string/R2p"
+            android:layout_gravity="left|center_vertical"
+            android:layout_margin="5dp"
+            android:minHeight="@dimen/demo_button_min_height"
+            android:minWidth="@dimen/demo_button_min_width"
+            android:text="@string/R2s"
+            android:textColor="@android:color/white"
+            fbutton:buttonColor="@color/fbutton_color_amethyst"
+            fbutton:shadowEnabled="true" />
+
+        <info.hoang8f.widget.FButton
             android:id="@+id/Button12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            >
-        </Button>
+            android:layout_gravity="right|center_vertical"
+            android:layout_margin="5dp"
+            android:minHeight="@dimen/demo_button_min_height"
+            android:minWidth="@dimen/demo_button_min_width"
+            android:text="@string/R2p"
+            android:textColor="@android:color/white"
+            fbutton:buttonColor="@color/fbutton_color_wisteria"
+            fbutton:shadowEnabled="true"/>
     </TableRow>
     <TableRow android:gravity="center_horizontal">
-        <Button
-            android:text="@string/speeds"
+        <info.hoang8f.widget.FButton
             android:id="@+id/Button13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="button_Speeds">
-        </Button>
-        <Button
-            android:text="@string/speedp"
+            android:layout_gravity="left|center_vertical"
+            android:layout_margin="5dp"
+            android:minHeight="@dimen/demo_button_min_height"
+            android:minWidth="@dimen/demo_button_min_width"
+            android:text="@string/speeds"
+            android:textColor="@android:color/white"
+            fbutton:buttonColor="@color/fbutton_color_orange"
+            fbutton:shadowEnabled="true"
+            android:onClick="button_Speeds"/>
+
+        <info.hoang8f.widget.FButton
             android:id="@+id/Button14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="button_Speedp">
-        </Button>
+            android:layout_gravity="right|center_vertical"
+            android:layout_margin="5dp"
+            android:minHeight="@dimen/demo_button_min_height"
+            android:minWidth="@dimen/demo_button_min_width"
+            android:text="@string/speedp"
+            android:textColor="@android:color/white"
+            fbutton:buttonColor="@color/fbutton_color_pumpkin"
+            fbutton:shadowEnabled="true"
+            android:onClick="button_Speedp"/>
     </TableRow>
     <TextView
         android:id="@+id/textStatus"
@@ -267,3 +349,4 @@
         </RadioGroup>
     </LinearLayout>
 </TableLayout>
+</ScrollView>
