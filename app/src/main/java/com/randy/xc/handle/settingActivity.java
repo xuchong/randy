@@ -2,13 +2,11 @@ package com.randy.xc.handle;
 
 import android.app.ActionBar;
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Xml;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,6 +15,8 @@ import android.widget.RadioButton;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+
+import com.randy.xc.refreshlibrary.PullToRefreshView;
 
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -34,6 +34,10 @@ public class settingActivity extends AppCompatActivity {
     private DatagramSocket datagramSocket;
     private DatagramPacket datagramPacket;
     private List<Connection> connectionList=new ArrayList<Connection>();
+
+    public static final int REFRESH_DELAY = 4000;
+
+    private PullToRefreshView mPullToRefreshView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +107,19 @@ public class settingActivity extends AppCompatActivity {
                 }
             }
         };
+
+        mPullToRefreshView = (PullToRefreshView) findViewById(R.id.pull_to_refresh);
+        mPullToRefreshView.setOnRefreshListener(new PullToRefreshView.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mPullToRefreshView.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mPullToRefreshView.setRefreshing(false);
+                    }
+                }, REFRESH_DELAY);
+            }
+        });
     }
     @Override
     protected  void onPause()
